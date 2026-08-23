@@ -2,6 +2,7 @@
 #include "Config.h"
 #include "Motors.h"
 #include "LineFollower.h"
+#include "CueMechanism.h"
 
 /* Robot Modes
 *    AUTONOMOUS: Line Follower Mode
@@ -12,7 +13,7 @@ enum RobotMode { AUTONOMOUS, MANUAL };
 RobotMode currentMode = AUTONOMOUS;
 
 unsigned long lastButtonPress = 0;
-bool pumpState = false;
+
 
 void setup() {
     Serial.begin(115200);
@@ -45,6 +46,7 @@ void handleModeSwitching() {
         if (ps5.Triangle() && (millis() - lastButtonPress > 300)) {
             currentMode = (currentMode == AUTONOMOUS) ? MANUAL : AUTONOMOUS;
             stopMotors(); // Always halt before switching contexts
+            updateMechanism(false);
             lastButtonPress = millis();
             
             Serial.print("Mode switched to: ");
@@ -71,5 +73,9 @@ void runManualControl() {
     int rightMotor = constrain(speedY - steerX, -200, 200);
 
     setMotorSpeeds(leftMotor, rightMotor);
+
+    /* Cue Control
+    *    Cross Button: Activate Cue Mechanism                     */
+    updateMechanism(ps5.Cross());
 
 }

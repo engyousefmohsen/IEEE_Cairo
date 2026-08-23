@@ -33,10 +33,7 @@ const float Kd = 25.0;
 const int BASE_SPEED = 240;
 
 /*<<<<<<<<<<<<<<<<<<<<<<<<< Impulse Mechanism >>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-
-
-
-
-#define STATUS_LED 2 /*  Will Be Changed To Anything */
+#define SERVO_PIN       4
+#define STATUS_LED      2 
 
 #endif /* CONFIG_H */
