@@ -8,7 +8,7 @@ static unsigned long lastPIDTime = 0;
 /* Checkpoint state machine states:
     CP_NONE:    no checkpoint sequence in progress
     CP_STOPPED: robot has stopped on the black strap, waiting for 5s dwell to complete
-    CP_CLEARING: robot is creeping forward to clear the strap, waiting for 700ms creep to complete
+    CP_CLEARING: robot is creeping forward to clear the strap, waiting for 200ms creep to complete
     Used This Mechanism to avoid getting stuck in a loop of stopping and starting when the robot is on the black strap.
 */
 enum CheckpointState { CP_NONE, CP_STOPPED, CP_CLEARING };
@@ -16,7 +16,7 @@ static CheckpointState cpState = CP_NONE; /* Intialize the checkpoint state mach
 static unsigned long cpTimer = 0;  /* Timer for checkpoint dwell/clear timing */
 
 static const unsigned long CHECKPOINT_STOP_MS  = 5000; // Wait time on the black strap
-static const unsigned long CHECKPOINT_CLEAR_MS = 700;  // forward-creep time to clear the strap
+static const unsigned long CHECKPOINT_CLEAR_MS = 200;  // forward-creep time to clear the strap
 
 void initSensors() {
     pinMode(IR_L, INPUT);
@@ -55,7 +55,7 @@ void runLineFollowerPID() {
             // Reset PID state so the next time we enter line-following mode, we don't get a jerk from stale error/integral terms
             resetLineFollowerPID();
         }
-        return; // Lessa Mestany EL 700ms Tekhlas
+        return; // Lessa Mestany EL 200ms Tekhlas
     }
 
     int L = digitalRead(IR_L);
@@ -115,56 +115,41 @@ void runLineFollowerPID() {
     //  int rightSpeed = constrain((int)(-(BASE_SPEED + output)), -PWM_MAX, PWM_MAX); 
     //  setMotorSpeeds(leftSpeed, rightSpeed);                                        
     
-    /* Raw Turning Moves */
-    //     if (error == 0) {
-    //     // Forward (normal PID)
-    //     int leftSpeed  = constrain(BASE_SPEED - output, 0, 200);
-    //     int rightSpeed = constrain(BASE_SPEED + output, 0, 200);
-
-    //     ledcWrite(CH_ENA, rightSpeed);
-    //     ledcWrite(CH_ENB, leftSpeed);
-    //     digitalWrite(IN1, HIGH);  // Right forward
-    //     digitalWrite(IN2, LOW);   
-    //     digitalWrite(IN3, LOW); 
-    //     digitalWrite(IN4, HIGH);  // Left forward
-
-    //     } else if (error < 0) {
-    //     // Rotate left in place
-    //     int turnSpeed = 150;
-    //     ledcWrite(CH_ENA, turnSpeed);  
-    //     ledcWrite(CH_ENB, turnSpeed);     
-    //     digitalWrite(IN1, LOW); 
-    //     digitalWrite(IN2, HIGH);   // Right forward
-    //     digitalWrite(IN3, LOW); 
-    //     digitalWrite(IN4, HIGH);   // Left backward
-
-    //   } else if (error > 0) {
-    //     int turnSpeed = 150;
-    //     // Rotate right in place
-    //     ledcWrite(CH_ENA, turnSpeed);  
-    //     ledcWrite(CH_ENB, turnSpeed);  
-    //     digitalWrite(IN1, HIGH); 
-    //     digitalWrite(IN2, LOW);  // Right backward
-    //     digitalWrite(IN3, HIGH); 
-    //     digitalWrite(IN4, LOW);  // Left forward
-    //   }
-
     if (error == 0) {
     // Forward (normal PID)
-    int leftSpeed  = BASE_SPEED - output;
-    int rightSpeed = BASE_SPEED + output;
-    setMotorSpeeds(leftSpeed, rightSpeed);
+    int leftSpeed  = constrain(BASE_SPEED - output, 0, 200);
+    int rightSpeed = constrain(BASE_SPEED + output, 0, 200);
 
-    } else if (error < 0) {
-    // Rotate left in place (left backward, right forward)
-    int turnSpeed = 150;
-    setMotorSpeeds(-turnSpeed, turnSpeed);
+    ledcWrite(CH_ENA, rightSpeed);
+    ledcWrite(CH_ENB, leftSpeed);
 
-    } else if (error > 0) {
-    // Rotate right in place (left forward, right backward)
-    int turnSpeed = 150;
-    setMotorSpeeds(turnSpeed, -turnSpeed);
-    }
+    digitalWrite(IN1, HIGH);  // Right forward
+    digitalWrite(IN2, LOW);   
+    digitalWrite(IN3, LOW); 
+    digitalWrite(IN4, HIGH);  // Left forward
+
+  } else if (error < 0) {
+    // Rotate left in place
+    int turnSpeed = 180;
+    ledcWrite(CH_ENA, turnSpeed);  
+    ledcWrite(CH_ENB, turnSpeed);  
+
+    digitalWrite(IN1, HIGH); 
+    digitalWrite(IN2, LOW);   // Right forward
+    digitalWrite(IN3, HIGH); 
+    digitalWrite(IN4, LOW);   // Left backward
+
+  } else if (error > 0) {
+    int turnSpeed = 180;
+    // Rotate right in place
+    ledcWrite(CH_ENA, turnSpeed);  
+    ledcWrite(CH_ENB, turnSpeed);  
+
+    digitalWrite(IN1, LOW); 
+    digitalWrite(IN2, HIGH);  // Right backward
+    digitalWrite(IN3, LOW); 
+    digitalWrite(IN4, HIGH);  // Left forward
+  }
 
     /*<<<<<<<<<<<<<<< Serial For Easier Debugging >>>>>>>>>>>>>>> */
     Serial.print("L="); Serial.print(L);
