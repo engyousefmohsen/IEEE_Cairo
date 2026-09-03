@@ -130,7 +130,7 @@ void runLineFollowerPID() {
 
   } else if (error < 0) {
     // Rotate left in place
-    int turnSpeed = 180;
+    int turnSpeed = 120;
     ledcWrite(CH_ENA, turnSpeed);  
     ledcWrite(CH_ENB, turnSpeed);  
 
@@ -140,7 +140,7 @@ void runLineFollowerPID() {
     digitalWrite(IN4, LOW);   // Left backward
 
   } else if (error > 0) {
-    int turnSpeed = 180;
+    int turnSpeed = 120;
     // Rotate right in place
     ledcWrite(CH_ENA, turnSpeed);  
     ledcWrite(CH_ENB, turnSpeed);  

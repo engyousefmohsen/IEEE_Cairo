@@ -24,23 +24,24 @@
 #define IR_M 35
 #define IR_R 34
 
-#define WHITE LOW
-#define BLACK HIGH
+#define WHITE HIGH
+#define BLACK LOW
 
 /*<<<<<<<<<<<<<<<<<<<<<<<<< PID Tuning >>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 const float Kp = 60.0;
 const float Ki = 0.001;
 const float Kd = 25.0;
-const int BASE_SPEED = 240;
+const int BASE_SPEED = 245;
 const float PID_INTEGRAL_LIMIT = 100.0;   // anti-windup clamp on the accumulator ( Prevent Violent Spinning When The Robot Leaves The Line or Stuck )
 
 /*<<<<<<<<<<<<<<<<<<<<<<<<< Manual Control >>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 #define STICK_DEADZONE      15           // +/- percent-equivalent (of +/-128 range) treated as neutral 
-#define MANUAL_MAX_SPEED    240     
+#define MANUAL_MAX_SPEED    250     
 #define MANUAL_MAX_STEER    180
 
 /*<<<<<<<<<<<<<<<<<<<<<<<<< Impulse Mechanism >>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 #define SERVO_PIN       23
 #define STATUS_LED      2 
+
 
 #endif /* CONFIG_H */
