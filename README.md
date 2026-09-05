@@ -1,8 +1,8 @@
 # Nightcrawler — Team Scope 8
 
 Firmware for **Nightcrawler**, the robot built by **Team Scope 8** for the IEEE CUSB competition (🥇 1st place, 126/125 points). The robot competes in two stages — a line-following stage and a billiards stage — and switches live between autonomous and manual control.
-
-Repository: https://github.com/engyousefmohsen/IEEE_Cairo
+<!-- 
+Repository: https://github.com/engyousefmohsen/IEEE_Cairo -->
 
 ## Gallery
 
@@ -37,14 +37,14 @@ FinalCode/Nightcrawler/     Final competition firmware (modular)
 ├── Motors.h / Motors.ino   Differential drive control (L298N, LEDC PWM)
 ├── LineFollower.h / .ino   PID line follower + checkpoint state machine
 └── CueMechanism.h / .ino   Servo-based cue mechanism for the billiards stage
-
+<!-- 
 Coding/                     Earlier standalone prototypes used during development
 ├── LineFollowing3/         Standalone line-follower prototype
 ├── MANUALMode/             Standalone PS5 manual-drive prototype
 └── servoBill/              Standalone servo cue-mechanism prototype
 
 cairoIeee/cairoIeee.ino     Earlier competition sketch iteration
-calLinefollower.ino         Bluetooth-based line follower calibration/testing sketch
+calLinefollower.ino         Bluetooth-based line follower calibration/testing sketch -->
 assets/                     Photos used in this README
 ```
 
@@ -56,7 +56,7 @@ The `FinalCode/Nightcrawler` folder is the version that competed. Everything und
 |---|---|
 | Microcontroller | ESP32 dev board |
 | Motor driver | L298N |
-| Drive motors | 2x DC gear motor, 12V, 30 kg·cm |
+| Drive motors | 2x DC gear motor, 12V, 7.5 kg·cm |
 | Cue mechanism servo | MG996R |
 | Line sensor | 3-channel IR line tracker |
 | Controller | PS5 DualSense (Bluetooth, `ps5Controller` library) |
