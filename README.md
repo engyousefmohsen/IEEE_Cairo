@@ -6,18 +6,20 @@ Repository: https://github.com/engyousefmohsen/IEEE_Cairo
 
 ## Gallery
 
-<p align="center">
-  <img src="assets/nightcrawler-front.png" width="45%" />
-  <img src="assets/nightcrawler-full-side.png" width="45%" />
-</p>
-<p align="center">
-  <img src="assets/nightcrawler-scope8-badge.png" width="45%" />
-  <img src="assets/nightcrawler-side-with-esp32.png" width="45%" />
-</p>
-<p align="center">
-  <img src="assets/nightcrawler-rear-open.png" width="45%" />
-  <img src="assets/nightcrawler-esp32-board.png" width="45%" />
-</p>
+<table align="center">
+  <tr>
+    <td><img src="assets/nightcrawler-front.png" width="320" height="240" /></td>
+    <td><img src="assets/nightcrawler-full-side.png" width="320" height="240" /></td>
+  </tr>
+  <tr>
+    <td><img src="assets/nightcrawler-scope8-badge.png" width="320" height="240" /></td>
+    <td><img src="assets/nightcrawler-side-with-esp32.png" width="320" height="240" /></td>
+  </tr>
+  <tr>
+    <td><img src="assets/nightcrawler-rear-open.png" width="320" height="240" /></td>
+    <td><img src="assets/nightcrawler-esp32-board.png" width="320" height="240" /></td>
+  </tr>
+</table>
 
 ## Overview
 
@@ -78,8 +80,8 @@ The `FinalCode/Nightcrawler` folder is the version that competed. Everything und
 
 ## Team
 
-- **Electrical & Software:** [ ]
-- **Mechanical:** [ ]
+- **Electrical & Software:** Muhanad Mahfouz, Mohammed Hany
+- **Mechanical:** Amr Khaled, Mohammed Hitham
 
 ## Result
 
