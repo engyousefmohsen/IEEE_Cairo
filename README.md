@@ -37,14 +37,7 @@ FinalCode/Nightcrawler/     Final competition firmware (modular)
 ├── Motors.h / Motors.ino   Differential drive control (L298N, LEDC PWM)
 ├── LineFollower.h / .ino   PID line follower + checkpoint state machine
 └── CueMechanism.h / .ino   Servo-based cue mechanism for the billiards stage
-<!-- 
-Coding/                     Earlier standalone prototypes used during development
-├── LineFollowing3/         Standalone line-follower prototype
-├── MANUALMode/             Standalone PS5 manual-drive prototype
-└── servoBill/              Standalone servo cue-mechanism prototype
 
-cairoIeee/cairoIeee.ino     Earlier competition sketch iteration
-calLinefollower.ino         Bluetooth-based line follower calibration/testing sketch -->
 assets/                     Photos used in this README
 ```
 
